@@ -3,7 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from mangum import Mangum
 
-from api.snippet.snippet_router import router as snippet_router
+from apis.snippet.snippet_router import router as snippet_router
 
 app = FastAPI(
     title="Xnippet API",
