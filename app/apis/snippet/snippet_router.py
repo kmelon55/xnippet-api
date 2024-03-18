@@ -38,7 +38,7 @@ def update_lambda_function(request: Snippet_update_request):
     if user_env_vars:
         update_lambda_function_configuration_response = update_lambda_function_configuration(function_name, user_env_vars)
 
-    return update_lambda_function_code_response, update_lambda_function_configuration_response
+    return update_lambda_function_code_response
 
 
 @router.post("/delete")
