@@ -1,6 +1,7 @@
 import boto3
 import zipfile
 import io
+from zipfile import ZipInfo
 
 from dotenv import load_dotenv
 from starlette.config import Config
@@ -39,7 +40,13 @@ import json
 def create_zip_file(code):
     zip_output = io.BytesIO()
     zip_file = zipfile.ZipFile(zip_output, 'w')
-    zip_file.writestr('lambda_function.py', code)
+    
+    # 파일에 대한 정보와 권한 설정
+    info = ZipInfo('lambda_function.py')
+    info.external_attr = 0o755 << 16  # 파일에 실행 권한 부여
+    
+    # 수정된 권한 정보를 사용하여 파일 쓰기
+    zip_file.writestr(info, code)
     zip_file.close()
     zip_output.seek(0)
     return zip_output.read()
