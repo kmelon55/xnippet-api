@@ -1,6 +1,4 @@
 from fastapi import APIRouter
-from dotenv import load_dotenv
-from starlette.config import Config
 
 from apis.snippet.snippet_service import create_lambda_function, create_lambda_function_url, add_lambda_function_permission, delete_lambda_function, delete_lambda_function_url, update_lambda_function_code, update_lambda_function_configuration
 from apis.snippet.snippet_schema import Snippet_deploy_request, Snippet_delete_request, Snippet_update_request
