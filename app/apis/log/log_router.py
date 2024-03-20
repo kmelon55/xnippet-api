@@ -8,7 +8,7 @@ router = APIRouter(
     tags=["cloudwatch log"], 
 )
 
-@router.get("/")
+@router.post("/")
 def get_logs(request: GetLogsRequest):
     function_name = request.function_name    
 
