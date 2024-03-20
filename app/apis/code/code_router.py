@@ -9,7 +9,7 @@ router = APIRouter(
     tags=["Code generate with AI"], 
 )
 
-@router.get("/")
+@router.get("/generate")
 def code_generate(request: CodeGenerateRequest):
     return
 
