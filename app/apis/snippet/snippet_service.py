@@ -3,11 +3,9 @@ import zipfile
 import io
 from zipfile import ZipInfo
 
-from dotenv import load_dotenv
 from starlette.config import Config
 
-load_dotenv()
-config = Config('.env')
+config = Config()
 
 
 http_handler_code_template = """
@@ -75,8 +73,8 @@ def create_lambda_function(function_name, script, user_env_vars=None):
         if user_env_vars:
             function_params['Environment'] = user_env_vars
 
-        print(f"Function {function_name} created successfully.")
         response = lambda_client.create_function(**function_params)
+        print(f"Function {function_name} created successfully.")
     except Exception as e:
         print(f"Error creating function {function_name}: {e}")
 

@@ -1,6 +1,4 @@
 from fastapi import APIRouter
-from dotenv import load_dotenv
-from starlette.config import Config
 
 from apis.code.code_schema import CodeGenerateRequest
 
