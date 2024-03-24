@@ -5,6 +5,7 @@ from mangum import Mangum
 
 from apis.snippet.snippet_router import router as snippet_router
 from apis.log.log_router import router as log_router
+from apis.ai.ai_router import router as ai_router
 
 load_dotenv()
 
@@ -28,5 +29,6 @@ async def health_check():
 
 app.include_router(snippet_router)
 app.include_router(log_router)
+app.include_router(ai_router)
 
 handler = Mangum(app)
