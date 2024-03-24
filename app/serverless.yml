@@ -16,6 +16,12 @@ package:
 
 custom:
   pythonRequirements:
+    slim: true
+    noDeploy:
+      - boto3
+      - botocore
+      - numpy
+      - pip
     dockerizePip: true
     layer:
       name: python-app-layer
