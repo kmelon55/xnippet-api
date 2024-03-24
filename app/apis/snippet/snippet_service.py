@@ -74,9 +74,9 @@ def create_lambda_function(function_name, script, user_env_vars=None):
             function_params['Environment'] = user_env_vars
 
         response = lambda_client.create_function(**function_params)
-        print(f"Function {function_name} created successfully.")
+        print(f"✅ Function {function_name} created successfully.")
     except Exception as e:
-        print(f"Error creating function {function_name}: {e}")
+        print(f"❌ Error creating function {function_name}: {e}")
 
     return response
 
@@ -87,10 +87,10 @@ def create_lambda_function_url(function_name):
             FunctionName=function_name,
             AuthType='NONE'
         )
-        print(f"Function URL configuration for {function_name} created successfully.")
+        print(f"✅ Function URL configuration for {function_name} created successfully.")
         return response
     except Exception as e:
-        print(f"Error creating URL configuration for {function_name}: {e}")
+        print(f"❌ Error creating URL configuration for {function_name}: {e}")
 
 
 def add_lambda_function_permission(function_name):
@@ -110,10 +110,10 @@ def add_lambda_function_permission(function_name):
 def get_lambda_function(function_name):
     try:
         response = lambda_client.get_function(FunctionName=function_name)
-        print(f"Function {function_name} found.")
+        print(f"✅ Function {function_name} found.")
         return response
     except Exception as e:
-        print(f"Error finding function {function_name}: {e}")
+        print(f"❌ Error finding function {function_name}: {e}")
 
 ##################################################################################################
 ################################ Update Lambda Function ##########################################
@@ -127,10 +127,10 @@ def update_lambda_function_code(function_name, script):
             FunctionName=function_name,
             ZipFile=zip_file_bytes,
         )
-        print(f"Function {function_name} updated successfully.")   
+        print(f"✅ Function {function_name} updated successfully.")   
         return response
     except Exception as e:
-        print(f"Error updating function {function_name}: {e}")
+        print(f"❌ Error updating function {function_name}: {e}")
 
 
 def update_lambda_function_configuration(function_name, user_env_vars):
@@ -139,10 +139,10 @@ def update_lambda_function_configuration(function_name, user_env_vars):
             FunctionName=function_name,
             Environment=user_env_vars
         )
-        print(f"Function {function_name} updated successfully.")
+        print(f"✅ Function {function_name} updated successfully.")
         return response
     except Exception as e:
-        print(f"Error updating function {function_name}: {e}")
+        print(f"❌ Error updating function {function_name}: {e}")
 
 
 ##################################################################################################
@@ -152,18 +152,18 @@ def update_lambda_function_configuration(function_name, user_env_vars):
 def delete_lambda_function(function_name):
     try:
         response = lambda_client.delete_function(FunctionName=function_name)
-        print(f"Function {function_name} deleted successfully.")
+        print(f"✅ Function {function_name} deleted successfully.")
         return response
     except Exception as e:
-        print(f"Error deleting function {function_name}: {e}")
+        print(f"❌ Error deleting function {function_name}: {e}")
 
 
 def delete_lambda_function_url(function_name):
     try:
         response = lambda_client.delete_function_url_config(FunctionName=function_name)
-        print(f"Function URL configuration for {function_name} has been deleted.")
+        print(f"✅ Function URL configuration for {function_name} has been deleted.")
         return response
     except lambda_client.exceptions.ResourceNotFoundException:
-        print(f"No URL configuration found for {function_name}.")
+        print(f"❌ No URL configuration found for {function_name}.")
     except Exception as e:
-        print(f"An error occurred: {str(e)}")
+        print(f"❌ An error occurred: {str(e)}")
