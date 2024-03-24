@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-
+from dotenv import load_dotenv
 from mangum import Mangum
 
 from apis.snippet.snippet_router import router as snippet_router
 from apis.log.log_router import router as log_router
+from apis.ai.ai_router import router as ai_router
+
+load_dotenv()
 
 app = FastAPI(
     title="Xnippet API",
@@ -26,5 +29,6 @@ async def health_check():
 
 app.include_router(snippet_router)
 app.include_router(log_router)
+app.include_router(ai_router)
 
 handler = Mangum(app)
