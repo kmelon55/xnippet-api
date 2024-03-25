@@ -4,8 +4,10 @@ import io
 from zipfile import ZipInfo
 import textwrap
 
+from dotenv import load_dotenv
 from starlette.config import Config
 
+load_dotenv()
 config = Config()
 
 http_handler_code_template = """
