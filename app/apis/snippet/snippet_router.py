@@ -10,6 +10,7 @@ router = APIRouter(
 
 @router.post("/deploy")
 def deploy_lambda_function(request: Snippet_deploy_request):
+    print('🚀 deploy_lambda_function called')
 
     function_name = request.function_name
     user_code = request.user_code
@@ -25,6 +26,7 @@ def deploy_lambda_function(request: Snippet_deploy_request):
 
 @router.post("/update")
 def update_lambda_function(request: Snippet_update_request):
+    print('🚀 update_lambda_function called')
 
     function_name = request.function_name
     user_code = request.user_code
@@ -41,6 +43,7 @@ def update_lambda_function(request: Snippet_update_request):
 
 @router.post("/delete")
 def delete_snippet(request: Snippet_delete_request):
+    print('🚀 delete_snippet called')
 
     function_name = request.function_name
 

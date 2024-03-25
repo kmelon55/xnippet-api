@@ -55,7 +55,7 @@ def lambda_handler(event, context):
 {user_code}
     return {{
         'statusCode': 200,
-        'body': json.dumps('Function executed successfully.')
+        'body': json.dumps('Function')
     }}
 """
 
@@ -105,10 +105,11 @@ def create_lambda_function(function_name, zip_file, user_env_vars=None):
 
         response = lambda_client.create_function(**function_params)
         print(f"✅ Function {function_name} created successfully.")
+        return response
     except Exception as e:
         print(f"❌ Error creating function {function_name}: {e}")
+        raise Exception("Error creating function")
 
-    return response
 
 
 def create_lambda_function_url(function_name):
@@ -121,6 +122,7 @@ def create_lambda_function_url(function_name):
         return response
     except Exception as e:
         print(f"❌ Error creating URL configuration for {function_name}: {e}")
+        raise Exception("Error creating URL configuration")
 
 
 def add_lambda_function_permission(function_name):
@@ -144,6 +146,7 @@ def get_lambda_function(function_name):
         return response
     except Exception as e:
         print(f"❌ Error finding function {function_name}: {e}")
+        raise Exception("Error finding function")
 
 ##################################################################################################
 ################################ Update Lambda Function ##########################################
@@ -159,6 +162,7 @@ def update_lambda_function_code(function_name, zip_file):
         return response
     except Exception as e:
         print(f"❌ Error updating function {function_name}: {e}")
+        raise Exception("Error updating function")
 
 
 def update_lambda_function_configuration(function_name, user_env_vars):
@@ -171,6 +175,7 @@ def update_lambda_function_configuration(function_name, user_env_vars):
         return response
     except Exception as e:
         print(f"❌ Error updating function {function_name}: {e}")
+        raise Exception("Error updating function")
 
 
 ##################################################################################################
@@ -184,6 +189,7 @@ def delete_lambda_function(function_name):
         return response
     except Exception as e:
         print(f"❌ Error deleting function {function_name}: {e}")
+        raise Exception("Error deleting function")
 
 
 def delete_lambda_function_url(function_name):
@@ -193,5 +199,7 @@ def delete_lambda_function_url(function_name):
         return response
     except lambda_client.exceptions.ResourceNotFoundException:
         print(f"❌ No URL configuration found for {function_name}.")
+        raise Exception("Error deleting URL configuration")
     except Exception as e:
         print(f"❌ An error occurred: {str(e)}")
+        raise Exception("Error deleting URL configuration")

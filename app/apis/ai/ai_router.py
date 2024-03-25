@@ -11,6 +11,7 @@ router = APIRouter(
 @router.post("/generate")
 def ai_code_generate(request: CodeGenerateRequest):
     print("🚀 ai_code_generate request")
+
     code = request.code
     user_prompt = request.user_prompt
 

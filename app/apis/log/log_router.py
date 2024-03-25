@@ -10,6 +10,8 @@ router = APIRouter(
 
 @router.post("/")
 def get_logs(request: GetLogsRequest):
+    print('🚀 get_logs called')
+
     function_name = request.function_name    
 
     return get_log_events(function_name)
