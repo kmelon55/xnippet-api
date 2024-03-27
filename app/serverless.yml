@@ -25,7 +25,7 @@ custom:
       - pip
     dockerizePip: true
     layer:
-      name: python-app-layer
+      name: XNIPPET-layer
       compatibleRuntimes:
         - python3.11
 
@@ -46,6 +46,7 @@ functions:
         - '!package.json'
         - '!venv/**'
         - '!.env'
+        - '!local/**'
 
     layers:
       - { Ref: PythonRequirementsLambdaLayer }
